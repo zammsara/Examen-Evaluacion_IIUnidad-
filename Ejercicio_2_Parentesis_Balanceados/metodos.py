@@ -30,7 +30,7 @@ ara realizar un seguimiento de los paréntesis abiertos:
     4. Si alguno de estos dos puntos falla, la cadena no está balanceada.
     5. Al finalizar, si la pila está vacía, la cadena está balanceada. De lo contrario, no lo está.
     
-ALGORITMO PARA BALANCEAR PARÉNTESIS EN UNA CADENA:
+ALGORITMO PARA BALANCEAR PARÉNTESIS EN UNA CADENA (EXTRA):
 
 El algoritmo genera una versión balanceada de una cadena:
 1. Utiliza una pila para llevar registro de índices de símbolos de apertura.
@@ -86,10 +86,17 @@ def balancear(cadena):
                 indices_invalidos.add(idx) # Si nada de esto se cumple,
                 #se agrega el índice del paréntesis de cierre a los inválidos
 
-    indices_invalidos.update(idx for _, idx in pila.items)
+    # Marcar aperturas que no se cerraron
+    actual = pila.tope
+    while actual is not None:
+        _, idx = actual.valor
+        indices_invalidos.add(idx)
+        actual = actual.siguiente
 
-    """Elimina los caracteres en los índices inválidos de la cadena
-    y devuelve la cadena balanceada"""
-    return ''.join(
-        caracter for idx, caracter in enumerate(cadena) if idx not in indices_invalidos
+    # Construir nueva cadena sin paréntesis inválidos
+    cadena_balanceada = ''.join(
+        caracter for idx, caracter in enumerate(cadena)
+        if idx not in indices_invalidos
     )
+    
+    return cadena_balanceada
