@@ -1,3 +1,11 @@
+#Ejercicio #1: Inversión de palabras en una frase. Desarrolle un programa que 
+#utilice una pila para invertir el orden de las palabras en una frase dada. Por ejemplo, 
+#la frase "Hola mundo desde UAM" debería invertirse a "UAM desde mundo Hola".
+
+
+
+
+
 from modulos import Pila
 
 pila = Pila()              # Pila para frases originales
