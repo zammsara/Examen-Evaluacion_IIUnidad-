@@ -1,8 +1,17 @@
 # main.py
 from metodos import verificar_balanceo, balancear
+import os 
 
+def limpiar_pantalla():
+    """Limpia la pantalla de la consola."""
+    input("Presione Enter para continuar...")
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
+
+limpiar_pantalla()
 def main():
     while True:
+        
         print("\n--- Menú ---")
         print("1. Verificar balanceo")
         print("2. Balancear cadena")
@@ -10,24 +19,31 @@ def main():
 
         opcion = input("Seleccione una opción: ")
 
-        if opcion == "1":
-            cadena = input("Ingrese la cadena a verificar: ")
-            if verificar_balanceo(cadena):
-                print("✅ La cadena está balanceada.")
-            else:
-                print("❌ La cadena NO está balanceada.")
+        match opcion:
+            case "1":
+                cadena = input("Ingrese la cadena a verificar: ")
+                if verificar_balanceo(cadena):
+                    print("✅ La cadena está balanceada.")
+                else:
+                    print("❌ La cadena NO está balanceada.")
+                
 
-        elif opcion == "2":
-            cadena = input("Ingrese la cadena a balancear: ")
-            balanceada = balancear(cadena)
-            print(f"Cadena balanceada: {balanceada}")
+            case "2":
+                cadena = input("Ingrese la cadena a balancear: ")
+                balanceada = balancear(cadena)
+                print(f"Cadena balanceada: {balanceada}")
 
-        elif opcion == "3":
-            print("Saliendo del programa...")
-            break
+            case "3":
+                print("Gracias por usar el programa.")
+                input("Presione Enter para salir...")
+                limpiar_pantalla()
+                break
+            case _:
+                print("Opción inválida, intente nuevamente.")
+                limpiar_pantalla()
 
-        else:
-            print("Opción inválida, intente nuevamente.")
+            
+            
 
 if __name__ == "__main__":
     main()
